@@ -1,0 +1,148 @@
+h1 {
+  margin: 0;
+  padding: 0.2rem;
+}
+.h2Categorias {
+  padding-left: 2rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0rem;
+  padding-top: 0.5rem;
+}
+.containerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Radio Canada", sans-serif;
+  font-size: larger;
+  background-color: #12283c;
+  box-shadow: 0px 1px 0px black;
+}
+.containerButtonLogin {
+  position: absolute;
+  padding-top: 10px;
+  right: 50px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1d232a;
+  color: #ffff;
+}
+main > .ButtonSearchPage {
+  text-align: center;
+}
+input:focus {
+  outline: none;
+}
+.LoginAndLogout {
+  background-color: transparent;
+  color: white;
+  border-radius: 10rem;
+  border: 0;
+  padding: 0rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.LoginAndLogout:hover {
+  background-color: transparent;
+}
+.containerListaProdutos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem;
+  box-shadow: 0px 0px 5px black;
+}
+.produto {
+  width: 300px;
+  height: 240px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0px 2px 3px black;
+  background-color: #12283c;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+.produto img {
+  width: 300px;
+  height: 175px;
+  object-fit: cover;
+}
+.produto > p {
+  margin: 0;
+  margin-top: 0.5rem;
+  font-family: "Radio Canada", sans-serif;
+  font-size: medium;
+  font-weight: bold;
+}
+.buttonComprar {
+  width: 150px;
+  height: 22px;
+  background-color: #b22222;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  border: none;
+  margin-top: 0.5rem;
+  padding: 0rem;
+}
+.buttonComprar:hover {
+  background-color: #831919;
+  color: white;
+}
+.swiper-wrapper {
+  margin: 0;
+  padding: 0.5rem;
+  padding-left: 5.2rem;
+}
+.ButtonSearchPage {
+  margin-top: 5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.ButtonSearchPage > button {
+  background-color: #0f5ea7;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  font-family: "Radio Canada", sans-serif;
+  font-size: large;
+}
+.ButtonSearchPage > button:hover {
+  cursor: pointer;
+  background-color: #0a3d6d;
+}
+.nameUser {
+  font-size: small;
+}
+.inputSearch {
+  text-align: center;
+  margin-top: 5rem;
+}
+.inputSearch > input {
+  font-size: medium;
+  margin-left: 5rem;
+  padding: 1rem;
+  padding-right: 20rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+.inputSearch > button {
+  margin-left: 2rem;
+  background-color: #0f5ea7;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-family: "Radio Canada", sans-serif;
+  font-size: large;
+}
+.inputSearch > button:hover {
+  cursor: pointer;
+  background-color: #0a3d6d;
+}

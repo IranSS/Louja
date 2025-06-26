@@ -1,0 +1,122 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+
+function Painel({ categoria, tag, nome }) {
+  const [productPerView, setProductPerView] = useState(4);
+  const [spaceBetweenProdutos, setSpaceBetweenProdutos] = useState(0);
+  const [centerSlideProduto, setCenterSlideProduto] = useState(false);
+  const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
+
+  const produtosFiltrados = produtos.filter((produto) => {
+    if (tag !== "") {
+      return Array.isArray(produto.tags) && produto.tags.includes(tag);
+    } else {
+      return (
+        typeof produto.nome === "string" &&
+        produto.nome.toLowerCase().startsWith(nome.toLowerCase())
+      );
+    }
+  });
+
+  //organiza o tamanho das janelas reajustando os slides
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 720) {
+        setProductPerView(1);
+      } else if (window.innerWidth <= 985) {
+        setProductPerView(2);
+      } else if (window.innerWidth <= 1500) {
+        setProductPerView(3);
+      } else {
+        setProductPerView(4);
+      }
+    }
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    //2 produtos ou 1
+    // if (produtosFiltrados.length <= 2 && window.innerWidth <= 985) {
+    //   setSpaceBetweenProdutos(0);
+    //   setCenterSlideProduto(false);
+    // } else
+
+    if (produtosFiltrados.length <= 2 && window.innerWidth >= 985) {
+      //Para 2 produtos
+      setSpaceBetweenProdutos(400);
+      setCenterSlideProduto(false);
+    } else if (
+      //mais de 3
+      produtosFiltrados.length > 2 &&
+      produtosFiltrados.length < 4 &&
+      window.innerWidth >= 985
+    ) {
+      setSpaceBetweenProdutos(300);
+      setCenterSlideProduto(false);
+    } else {
+      //slide completa fix
+      setSpaceBetweenProdutos(0);
+      setCenterSlideProduto(false);
+    }
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/produto/listar")
+      .then((res) => {
+        setProdutos(res.data);
+      })
+      .catch((err) => {
+        //testando
+        console.error("Erro ao buscar produtos", err);
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("user");
+        navigate("/");
+      });
+  }, []);
+  return (
+    <div>
+      <h2 className="h2Categorias">{categoria}</h2>
+      {produtosFiltrados.length !== 0 ? (
+        <div className="containerListaProdutos">
+          <Swiper
+            spaceBetween={spaceBetweenProdutos}
+            modules={[Navigation]}
+            slidesPerView={productPerView}
+            pagination={{ clickable: false }}
+            centeredSlides={centerSlideProduto}
+            navigation
+          >
+            {produtosFiltrados.map((produto) => (
+              <SwiperSlide key={produto.id}>
+                <div className="produto">
+                  <img src={"http://localhost:8080" + produto.urlImagem} />
+                  <br />
+                  <p>{produto.nome}</p>
+                  <div>
+                    <button className="buttonComprar">
+                      R$ {produto.preco.toFixed(2)}
+                    </button>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+export default Painel;

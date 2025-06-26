@@ -1,0 +1,33 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import "./App.css";
+import LoginAndAuth from "./Pages/Auth/LoginPage";
+import PageProdutos from "./Pages/Produtos/PageProdutos";
+import { AuthProvider } from "./Configs/Auth/AuthProvider";
+import RegisterPage from "./Pages/Auth/RegisterPage";
+import AddProduto from "./components/AddProduto";
+import Search from "./Pages/Principal/Search";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/"} element={<PageProdutos />}></Route>
+          <Route path="/login" element={<LoginAndAuth />}></Route>
+          <Route path="/produto" element={<PageProdutos />}></Route>
+          <Route path="/registrar" element={<RegisterPage />} />
+          <Route path="/produto/publicar" element={<AddProduto />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}
+
+export default App;

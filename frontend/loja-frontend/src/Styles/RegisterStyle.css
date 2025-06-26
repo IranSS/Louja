@@ -1,0 +1,61 @@
+p {
+  font-size: 15px;
+}
+.container-register {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  border-radius: 1.2rem;
+  background-color: #12283c;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  box-shadow: 1px 1px 3px black;
+  width: 100%;
+  max-width: 250px;
+}
+
+.wrapper {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 90dvh;
+}
+.ButtonRegister {
+  background-color: #0f5ea7;
+  color: white;
+  border-radius: 0.2rem;
+  padding: 0.7rem;
+  margin-top: 0.8rem;
+  border: none;
+  width: 100%;
+}
+.inputs {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: none;
+  box-sizing: border-box;
+}
+.TextRegister {
+  margin-top: 0.2rem;
+}
+.top {
+  display: flex;
+  position: relative;
+  text-align: center;
+  padding: 0;
+  padding-bottom: 0;
+}
+.ChevronLeft2 {
+  position: relative;
+  right: 14.4rem;
+  top: 10%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
