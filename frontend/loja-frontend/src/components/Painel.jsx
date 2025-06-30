@@ -80,8 +80,8 @@ function Painel({ categoria, tag, nome }) {
       .catch((err) => {
         //testando
         console.error("Erro ao buscar produtos", err);
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
         navigate("/");
       });
   }, []);

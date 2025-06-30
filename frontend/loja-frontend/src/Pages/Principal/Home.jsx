@@ -1,5 +1,6 @@
 import { useAuth } from "../../Configs/Auth/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import Carrinho from "../../components/Carrinho";
 
 function Home({ textLoginOrUser }) {
   const { user, token, logout } = useAuth();
@@ -27,7 +28,14 @@ function Home({ textLoginOrUser }) {
               Login/Register
             </button>
           ) : (
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Carrinho></Carrinho>
               <p className="nameUser" style={{ paddingRight: "0.8rem" }}>
                 {user?.name}
               </p>
