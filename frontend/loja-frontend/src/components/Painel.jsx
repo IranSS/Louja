@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import { useCart } from "./CarrinhoContext";
 
 function Painel({ categoria, tag, nome }) {
+  const { addToCart, cartItems } = useCart();
   const [productPerView, setProductPerView] = useState(4);
   const [spaceBetweenProdutos, setSpaceBetweenProdutos] = useState(0);
   const [centerSlideProduto, setCenterSlideProduto] = useState(false);
@@ -22,6 +24,9 @@ function Painel({ categoria, tag, nome }) {
       );
     }
   });
+  useEffect(() => {
+    console.log("Carrinho (painel)", cartItems);
+  }, [cartItems]);
 
   //organiza o tamanho das janelas reajustando os slides
   useEffect(() => {
@@ -80,8 +85,8 @@ function Painel({ categoria, tag, nome }) {
       .catch((err) => {
         //testando
         console.error("Erro ao buscar produtos", err);
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
         navigate("/");
       });
   }, []);
@@ -105,7 +110,10 @@ function Painel({ categoria, tag, nome }) {
                   <br />
                   <p>{produto.nome}</p>
                   <div>
-                    <button className="buttonComprar">
+                    <button
+                      className="buttonComprar"
+                      onClick={() => addToCart(produto)}
+                    >
                       R$ {produto.preco.toFixed(2)}
                     </button>
                   </div>
