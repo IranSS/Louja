@@ -13,14 +13,26 @@ function Carrinho() {
         to={"/carrinho"}
         style={{ display: "flex", textDecoration: "none", color: "inherit" }}
       >
-        <p
-          style={{
-            position: "relative",
-            left: "1.58rem",
-          }}
-        >
-          {cartItems.length}
-        </p>
+        {cartItems.length <= 9 ? (
+          <p
+            style={{
+              position: "relative",
+              left: "1.58rem",
+            }}
+          >
+            {cartItems.length}
+          </p>
+        ) : (
+          <p
+            style={{
+              position: "relative",
+              left: "1.78rem",
+            }}
+          >
+            {cartItems.length}
+          </p>
+        )}
+
         <img
           src=".\src\assets\icons\carrinho.png"
           style={{ width: "35px", height: "30px" }}

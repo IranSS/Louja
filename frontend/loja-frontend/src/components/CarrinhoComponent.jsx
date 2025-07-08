@@ -17,12 +17,17 @@ function CarrinhoComponent() {
         <>
           <ul>
             {cartItems.map((item, index) => (
-              <li key={index}>
-                {item.nome} - R$ {item.preco.toFixed(2)}
+              <li key={index} style={{ display: "flex" }}>
+                <div className="produto">
+                  <img src={"http://localhost:8080" + item.urlImagem} />
+                  <p>
+                    {item.nome} - R$ {item.preco.toFixed(2)}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
-          <h3>Total: R$ {total.toFixed(2)}</h3>
+          <p>Total: R$ {total.toFixed(2)}</p>
         </>
       )}
     </div>

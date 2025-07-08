@@ -63,7 +63,7 @@ input:focus {
   text-align: center;
   border-radius: 0.5rem;
 }
-.produto img {
+.produto > img {
   width: 300px;
   height: 175px;
   object-fit: cover;
