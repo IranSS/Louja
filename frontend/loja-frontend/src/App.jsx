@@ -23,7 +23,6 @@ function App() {
           <Routes>
             <Route path={"/"} element={<PageProdutos />}></Route>
             <Route path="/login" element={<LoginAndAuth />}></Route>
-            <Route path="/produto" element={<PageProdutos />}></Route>
             <Route path="/registrar" element={<RegisterPage />} />
             <Route path="/produto/publicar" element={<AddProduto />} />
             <Route path="/search" element={<Search />} />

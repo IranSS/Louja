@@ -12,7 +12,7 @@ function PageProdutos() {
   }
   return (
     <div>
-      <Home textLoginOrUser={true} />
+      <Home loginOrShopping={true} />
       <main>
         <div className="ButtonSearchPage">
           <button onClick={SearchPage}>Pesquisar por jogos</button>
