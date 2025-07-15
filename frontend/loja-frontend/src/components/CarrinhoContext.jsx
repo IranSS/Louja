@@ -9,8 +9,14 @@ export function CartProvider({ children }) {
     console.log("Produto adicionado: ", produto);
     setCartItems((prev) => [...prev, produto]);
   }
+  function atualizarCarrinho(novaLista) {
+    setCartItems(novaLista);
+    console.log("Lista atualizada");
+  }
   return (
-    <CarrinhoContext.Provider value={{ cartItems, addToCart }}>
+    <CarrinhoContext.Provider
+      value={{ cartItems, addToCart, atualizarCarrinho }}
+    >
       {children}
     </CarrinhoContext.Provider>
   );

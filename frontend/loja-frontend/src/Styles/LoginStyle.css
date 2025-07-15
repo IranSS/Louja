@@ -1,16 +1,3 @@
-form {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  border-radius: 1.2rem;
-  background-color: #12283c;
-  padding-right: 8rem;
-  padding-left: 8rem;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-  box-shadow: 1px 1px 3px black;
-}
 h2 {
   font-family: "Cabin", sans-serif;
   padding: 0;
@@ -28,6 +15,19 @@ Link {
   font-size: small;
   padding: 0;
   margin: 0;
+}
+.form-login {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  border-radius: 1.2rem;
+  background-color: #12283c;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  box-shadow: 1px 1px 3px black;
 }
 .inputs-Login {
   width: 100%;

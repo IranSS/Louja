@@ -1,0 +1,71 @@
+textarea {
+  padding: 0.8rem 1rem 3rem 0.8rem;
+  font-family: "Cabin", sans-serif;
+  border-radius: 0.2rem;
+  font-size: medium;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+}
+label {
+  font-family: "Cabin", sans-serif;
+}
+.containerAddProdutos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1.2rem;
+  padding: 2rem 7rem 2rem;
+  background-color: #12283c;
+  box-shadow: 0px 0px 2px black;
+}
+.containerAddProdutos > h2 {
+  text-align: center;
+}
+.containerAddProdutos > p {
+  padding: 0rem;
+  padding-bottom: 0.1rem;
+  padding-top: 0.4rem;
+  font-size: medium;
+}
+.file-input {
+  display: none;
+}
+.input-gerenciar {
+  padding: 0.5rem 10rem 0.5rem 0.8rem;
+  border-radius: 0.2rem;
+  border: none;
+  width: 100%;
+  font-size: medium;
+  box-sizing: border-box;
+}
+.enviar-dados {
+  background-color: #0f5ea7;
+  color: white;
+  border-radius: 0.2rem;
+  padding: 0.7rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  border: none;
+  font-size: large;
+}
+.enviar-dados:hover {
+  background-color: #0a3d6d;
+  color: white;
+  cursor: pointer;
+}
+.custom-file-button {
+  background-color: #0f5ea7;
+  color: white;
+  padding: 0.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: small;
+  width: 100%;
+}
+.custom-file-button:hover {
+  background-color: #0a3d6d;
+}
