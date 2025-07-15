@@ -6,7 +6,6 @@ import "./../Styles/CarrinhoStyle.css";
 
 function CarrinhoComponent() {
   const { cartItems, atualizarCarrinho } = useCart();
-  const total = cartItems.reduce((sum, item) => sum + item.preco, 0);
 
   useEffect(() => {
     console.log("Carrinho carregado:", cartItems);
@@ -18,7 +17,7 @@ function CarrinhoComponent() {
   }
 
   return (
-    <div>
+    <div className="container-principal-carrinho-component">
       <h2
         style={{
           marginTop: "1rem",
@@ -28,15 +27,10 @@ function CarrinhoComponent() {
       >
         Produtos no carrinho
       </h2>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "center",
-        }}
-      >
+      <div className="lista-produtos">
         <div className="carrinho">
           {cartItems.length === 0 ? (
-            <p>carrrinho vazio</p>
+            <h3>Carrinho vazio</h3>
           ) : (
             <>
               <ul>
@@ -68,9 +62,6 @@ function CarrinhoComponent() {
               </ul>
             </>
           )}
-        </div>
-        <div>
-          <p>valor total: {total.toFixed(2).replace(".", ",")}</p>
         </div>
       </div>
     </div>

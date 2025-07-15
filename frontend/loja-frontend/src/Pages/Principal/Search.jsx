@@ -4,7 +4,7 @@ import SearchProduto from "../../components/SearchProduto";
 function Search() {
   return (
     <div>
-      <Home textLoginOrUser={true}></Home>
+      <Home loginOrShopping={true}></Home>
       <SearchProduto />
     </div>
   );

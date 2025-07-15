@@ -8,6 +8,7 @@ function SideBar({ isOpen, toggleSlideBar }) {
   const navigate = useNavigate();
 
   const clickHandle = () => {
+    navigate("/");
     logout();
     window.location.reload();
   };
