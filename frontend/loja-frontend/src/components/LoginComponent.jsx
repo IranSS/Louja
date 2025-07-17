@@ -44,7 +44,7 @@ function LoginComponent() {
 
   return (
     <div className="container-todo-campo">
-      <form onSubmit={handleLogin}>
+      <form className="form-login" onSubmit={handleLogin}>
         <div className="loginTop">
           <ChevronLeft
             className="ChevronLeft"
