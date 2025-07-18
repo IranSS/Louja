@@ -1,0 +1,28 @@
+.container-tudo-de-infos {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 50.38px);
+  align-items: center;
+}
+.container-infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 1px 0px 1px black;
+  background-color: #12283c;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 0.4rem;
+}
+.elemento-infos {
+  display: flex;
+  flex-direction: column;
+  justify-items: start;
+  width: 100%;
+}
+.elemento-infos > .item {
+  margin-left: 1rem;
+}
+.title {
+  font-weight: bold;
+  margin-top: 1rem;
+}

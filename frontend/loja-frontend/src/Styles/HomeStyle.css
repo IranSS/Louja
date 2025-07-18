@@ -90,6 +90,9 @@ input:focus {
   background-color: #831919;
   color: white;
 }
+.buttonComprar::after {
+  background: blue;
+}
 .swiper-wrapper {
   margin: 0;
   padding: 0.5rem;

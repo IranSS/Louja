@@ -31,7 +31,7 @@ function SideBar({ isOpen, toggleSlideBar }) {
             alignItems: "center",
           }}
         >
-          <li>
+          <li onClick={() => navigate("/perfil")}>
             <div className="menu-item">
               <User className="icon"></User>
               <p>Perfil</p>

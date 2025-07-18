@@ -1,15 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "./components/CarrinhoContext";
+import { AuthProvider } from "./Configs/Auth/AuthProvider";
 
-import "./App.css";
 import LoginAndAuth from "./Pages/Auth/LoginPage";
 import PageProdutos from "./Pages/Produtos/PageProdutos";
-import { AuthProvider } from "./Configs/Auth/AuthProvider";
 import RegisterPage from "./Pages/Auth/RegisterPage";
 import GerenciarProdutos from "./Pages/Produtos/GerenciarProdutos";
 import Search from "./Pages/Principal/Search";
-import { CartProvider } from "./components/CarrinhoContext";
-import CarrinhoPage from "./Pages/Principal/CarrinhoPage";
 
+import CarrinhoPage from "./Pages/Principal/CarrinhoPage";
+import PerfilPage from "./Pages/Auth/PerfilPage";
+
+import "./App.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,8 +27,9 @@ function App() {
             <Route path="/login" element={<LoginAndAuth />}></Route>
             <Route path="/registrar" element={<RegisterPage />} />
             <Route path="/produto/publicar" element={<GerenciarProdutos />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/pesquisar" element={<Search />} />
             <Route path="/carrinho" element={<CarrinhoPage />} />
+            <Route path="/perfil" element={<PerfilPage></PerfilPage>}></Route>
           </Routes>
         </BrowserRouter>
       </CartProvider>

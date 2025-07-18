@@ -67,7 +67,7 @@ public class AuthenticationController {
     @GetMapping("/get-user")
     public ResponseEntity<?> getUser(@RequestParam String email){
         return userRepository.findByEmail(email)
-                .map(user -> ResponseEntity.ok(new UserNameDTO(user.getName())))
+                .map(user -> ResponseEntity.ok(new UserNameDTO(user.getName(), user.getRole())))
                 .orElse(ResponseEntity.notFound().build());
     }
     //criar post de admin usando DTO RegisterAdminDTO
