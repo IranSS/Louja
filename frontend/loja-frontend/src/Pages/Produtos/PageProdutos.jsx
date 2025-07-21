@@ -7,15 +7,14 @@ import "../../Styles/HomeStyle.css";
 function PageProdutos() {
   const navigate = useNavigate();
 
-  function SearchPage() {
-    navigate("/search");
-  }
   return (
     <div>
       <Home loginOrShopping={true} />
       <main>
         <div className="ButtonSearchPage">
-          <button onClick={SearchPage}>Pesquisar por jogos</button>
+          <button onClick={() => navigate("/pesquisar")}>
+            Pesquisar por jogos
+          </button>
         </div>
         <Painel
           categoria={"jogos de primeira pessoa(FPS)"}

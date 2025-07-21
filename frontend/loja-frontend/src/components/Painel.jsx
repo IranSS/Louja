@@ -112,7 +112,11 @@ function Painel({ categoria, tag, nome }) {
                   <div>
                     <button
                       className="buttonComprar"
-                      onClick={() => addToCart(produto)}
+                      onClick={() =>
+                        cartItems.includes(produto)
+                          ? alert("Produto já está no carrinho")
+                          : addToCart(produto)
+                      }
                     >
                       R$ {produto.preco.toFixed(2)}
                     </button>

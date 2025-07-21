@@ -32,9 +32,14 @@ function LoginComponent() {
         }
       );
 
-      const userName = userResponse.data.name;
+      console.log("data: ", userResponse.data);
 
-      login(token, { name: userName });
+      const name = userResponse.data.name;
+      const role = userResponse.data.role;
+
+      console.log("role: ", role);
+
+      login(token, { name: name }, { email: email }, { role: role });
       navigate("/");
     } catch (error) {
       console.error("Erro ao fazer o login: ", error);
