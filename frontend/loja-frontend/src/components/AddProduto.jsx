@@ -83,7 +83,7 @@ function AddProduto() {
             className="file-input"
             onChange={(e) => setImagem(e.target.files[0])}
           />
-          <label for="fileInput" className="custom-file-button">
+          <label htmlFor="fileInput" className="custom-file-button">
             Escolher imagem de capa
           </label>
         </div>

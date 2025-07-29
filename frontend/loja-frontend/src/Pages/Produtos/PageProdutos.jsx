@@ -1,27 +1,25 @@
 import Home from "../Principal/Home";
 import Painel from "../../components/Painel";
-import { useNavigate } from "react-router-dom";
+
+import SearchFunction from "../../components/search/SearchComponent";
 
 import "../../Styles/HomeStyle.css";
 
 function PageProdutos() {
-  const navigate = useNavigate();
 
   return (
     <div>
       <Home loginOrShopping={true} />
       <main>
-        <div className="ButtonSearchPage">
-          <button onClick={() => navigate("/pesquisar")}>
-            Pesquisar por jogos
-          </button>
+        <div className="search">
+          <SearchFunction></SearchFunction>
         </div>
         <Painel
           categoria={"jogos de primeira pessoa(FPS)"}
           tag={"FPS"}
         ></Painel>
         <Painel categoria="Jogos de RPG" tag={"RPG"}></Painel>
-        <Painel categoria="Jogos de ação" tag={"Ação"}></Painel>
+        <Painel categoria="Destaques" tag={"+"}></Painel>
       </main>
     </div>
   );

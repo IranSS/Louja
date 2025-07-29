@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useCart } from "./CarrinhoContext";
+import { ShoppingCart } from "lucide-react";
 
 function Painel({ categoria, tag, nome }) {
   const { addToCart, cartItems } = useCart();
@@ -14,6 +15,7 @@ function Painel({ categoria, tag, nome }) {
   const [produtos, setProdutos] = useState([]);
   const navigate = useNavigate();
 
+  //filtro, se não tiver tag vai buscar pelo nome
   const produtosFiltrados = produtos.filter((produto) => {
     if (tag !== "") {
       return Array.isArray(produto.tags) && produto.tags.includes(tag);
@@ -51,12 +53,6 @@ function Painel({ categoria, tag, nome }) {
   }, []);
 
   useEffect(() => {
-    //2 produtos ou 1
-    // if (produtosFiltrados.length <= 2 && window.innerWidth <= 985) {
-    //   setSpaceBetweenProdutos(0);
-    //   setCenterSlideProduto(false);
-    // } else
-
     if (produtosFiltrados.length <= 2 && window.innerWidth >= 985) {
       //Para 2 produtos
       setSpaceBetweenProdutos(400);
@@ -75,7 +71,7 @@ function Painel({ categoria, tag, nome }) {
       setCenterSlideProduto(false);
     }
   });
-
+  //recebendo lista de todos os produtos
   useEffect(() => {
     axios
       .get("http://localhost:8080/produto/listar")
@@ -83,13 +79,13 @@ function Painel({ categoria, tag, nome }) {
         setProdutos(res.data);
       })
       .catch((err) => {
-        //testando
         console.error("Erro ao buscar produtos", err);
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         navigate("/");
       });
   }, []);
+
   return (
     <div>
       <h2 className="h2Categorias">{categoria}</h2>
@@ -110,16 +106,18 @@ function Painel({ categoria, tag, nome }) {
                   <br />
                   <p>{produto.nome}</p>
                   <div>
-                    <button
-                      className="buttonComprar"
-                      onClick={() =>
-                        cartItems.includes(produto)
-                          ? alert("Produto já está no carrinho")
-                          : addToCart(produto)
-                      }
-                    >
-                      R$ {produto.preco.toFixed(2)}
-                    </button>
+                    {
+                      <button
+                        className="buttonComprar"
+                        onClick={() =>
+                          cartItems.includes(produto)
+                            ? alert("Produto já está no carrinho")
+                            : addToCart(produto)
+                        }
+                      >
+                        R$ {produto.preco.toFixed(2)}
+                      </button>
+                    }
                   </div>
                 </div>
               </SwiperSlide>
