@@ -1,6 +1,7 @@
 package com.louja.backend.model.produto;
 
 import jakarta.persistence.*;
+import org.hibernate.Length;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +13,7 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nome;
+    @Column(length = 1000)
     private String descricao;
     private float preco;
     private List<String> tags;
