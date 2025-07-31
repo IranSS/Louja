@@ -1,11 +1,30 @@
 import axios from "axios";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function SearchFunction(){
+function SearchComponent(){
     const [valueInput, setValueInput] = useState();
     const [produtos, setProdutos] = useState([]);
     const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const [pesquisa, setPesquisa] = useState("");
+
+    //redireciona para a página exclusiva de pesquisas
+    const pesquisar = () =>  {
+        localStorage.setItem("pesquisa_recente", pesquisa);
+        console.log(pesquisa);
+        if(location.pathname == "/pesquisar"){
+            console.log("teste");
+            window.location.reload();
+        }
+        else{
+            navigate("/pesquisar");
+        }
+    }
 
     //pegar todos os produtos
     useEffect(() => {
@@ -31,13 +50,21 @@ function SearchFunction(){
         else{
             setProdutosFiltrados([])
         }
+        const valor = document.getElementById("InputSearch").value;
+        setPesquisa(valor);
+        localStorage.setItem("pesquisa_recente", pesquisa);
     }, [valueInput])
 
      return (
      <div className="container-Search">
         <div className="campo-search">
-            <input className="InputSearch" type="text" placeholder="pesquisar" onChange={(valor) => (setValueInput(valor.target.value))}/>
-            <Search className="iconSearch"  size={25}></Search>
+            <input autoComplete="off" id="InputSearch" className="InputSearch" 
+            type="text" placeholder="pesquisar" onChange={
+                (valor) => (setValueInput(valor.target.value))}
+                onKeyDown={(e) => {if (e.key === "Enter"){
+                    pesquisar();
+                }}}/>
+            <Search className="iconSearch"  size={25} onClick={pesquisar}></Search>
         </div>
         {produtosFiltrados.length !== 0 ? (
             <div className="container-resultados">
@@ -55,4 +82,4 @@ function SearchFunction(){
         
     </div>
      )
-} export default SearchFunction;
+} export default SearchComponent;

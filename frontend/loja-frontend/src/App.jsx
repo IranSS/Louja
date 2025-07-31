@@ -7,7 +7,6 @@ import PageProdutos from "./Pages/Produtos/PageProdutos";
 import RegisterPage from "./Pages/Auth/RegisterPage";
 import GerenciarProdutos from "./Pages/Produtos/GerenciarProdutos";
 import Search from "./Pages/Principal/Search";
-
 import CarrinhoPage from "./Pages/Principal/CarrinhoPage";
 import PerfilPage from "./Pages/Auth/PerfilPage";
 
