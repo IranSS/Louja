@@ -2,11 +2,13 @@ import axios from "axios";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCart } from "../CarrinhoContext";
 
 function SearchComponent(){
     const [valueInput, setValueInput] = useState();
     const [produtos, setProdutos] = useState([]);
     const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+    const {addToCart, cartItems} = useCart();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -74,7 +76,11 @@ function SearchComponent(){
                         <img src={"http://localhost:8080" + produto.urlImagem} alt="" />
                         <div className="campoAcoesItens">
                             <p>{produto.nome}</p>
-                            <button className="buttonComprar">R$ {produto.preco.toFixed(2)}</button>
+                            <button className="buttonComprar"
+                                onClick={() => cartItems.some(item => item.id === produto.id)
+                                ? alert("Produto já está no carrinho") : addToCart(produto)}>R$ 
+                                {produto.preco.toFixed(2)}
+                            </button>
                         </div>
                     </div>))}
             </div>
