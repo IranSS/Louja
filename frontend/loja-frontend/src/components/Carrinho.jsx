@@ -1,7 +1,14 @@
+import { useEffect } from "react";
 import { useCart } from "./CarrinhoContext";
 import { Link } from "react-router-dom";
+
 function Carrinho() {
   const { cartItems } = useCart();
+
+
+  useEffect(() => {
+    console.log("Itens no carrinho:", cartItems);
+  })
   return (
     <div
       style={{

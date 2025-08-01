@@ -9,7 +9,7 @@ function Home({ loginOrShopping }) {
   const { token } = useAuth();
   const navigate = useNavigate();
   const [isSideBarOpen, setSideBarOpen] = useState(false);
-
+  
   const toggleSlideBar = () => {
     setSideBarOpen(!isSideBarOpen);
   };

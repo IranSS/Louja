@@ -1,7 +1,7 @@
 import Home from "../Principal/Home";
 import Painel from "../../components/Painel";
 
-import SearchFunction from "../../components/search/SearchComponent";
+import SearchComponent from "../../components/search/SearchComponent";
 
 import "../../Styles/HomeStyle.css";
 
@@ -12,7 +12,7 @@ function PageProdutos() {
       <Home loginOrShopping={true} />
       <main>
         <div className="search">
-          <SearchFunction></SearchFunction>
+          <SearchComponent></SearchComponent>
         </div>
         <Painel
           categoria={"jogos de primeira pessoa(FPS)"}

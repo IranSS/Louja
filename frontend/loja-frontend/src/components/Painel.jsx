@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useCart } from "./CarrinhoContext";
-import { ShoppingCart } from "lucide-react";
 
 function Painel({ categoria, tag, nome }) {
   const { addToCart, cartItems } = useCart();
@@ -26,9 +25,6 @@ function Painel({ categoria, tag, nome }) {
       );
     }
   });
-  useEffect(() => {
-    console.log("Carrinho (painel)", cartItems);
-  }, [cartItems]);
 
   //organiza o tamanho das janelas reajustando os slides
   useEffect(() => {
@@ -86,6 +82,14 @@ function Painel({ categoria, tag, nome }) {
       });
   }, []);
 
+    useEffect(() => {
+      console.log("painel carrinho: ", cartItems);
+      const teste = () => {
+        
+      }
+      teste();
+  }, [cartItems]);
+
   return (
     <div>
       <h2 className="h2Categorias">{categoria}</h2>
@@ -110,9 +114,11 @@ function Painel({ categoria, tag, nome }) {
                       <button
                         className="buttonComprar"
                         onClick={() =>
-                          cartItems.includes(produto)
+                          localStorage.getItem("token") === null ? (
+                            (alert("você tem que logar na sua conta"))
+                          ) : (cartItems.some(item => item.id === produto.id)
                             ? alert("Produto já está no carrinho")
-                            : addToCart(produto)
+                            : addToCart(produto))
                         }
                       >
                         R$ {produto.preco.toFixed(2)}
