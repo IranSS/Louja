@@ -8,8 +8,6 @@ import { useCart } from "./CarrinhoContext";
 
 import MySnackBar from "./interface/MySnackBar";
 
-import ProductSlide from "./produtos/ProductSlide";
-
 function Painel({ categoria, tag, nome }) {
   const { addToCart, cartItems } = useCart();
   const [productPerView, setProductPerView] = useState(4);

@@ -1,13 +1,13 @@
-function ProductSlide() {
-    const imagemSalva = localStorage.getItem("imagemProduto");
+function ProductSlide({imagemPreview}) {
   return (
     <div className="produto">
-      <img src={imagemSalva} alt="Preview"/>
+      <img src={imagemPreview} alt="Preview"/>
       <br />
       <p>nome</p>
       <div>
-        <button
+        <button className="buttonComprar"
         >
+          botas
           {/* R$ {produto.preco.toFixed(2)} */}
         </button>
       </div>

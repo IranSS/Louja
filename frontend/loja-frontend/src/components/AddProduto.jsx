@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../Configs/Auth/AuthProvider";
 import axios from "axios";
+import MySnackBar from "./interface/MySnackBar.jsx"
 
 import "./../Styles/GerenciarProdutoStyle.css";
 
-function AddProduto() {
+function AddProduto({setImagemPreview}) {
   const { token } = useAuth();
+  
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState(0);
   const [tags, setTags] = useState("");
+
   const [imagem, setImagem] = useState(null);
+  const [message, setMessage] = useState({message: "", type: ""});
+  const fileInputRef = useRef(null);
 
 
   const handleAddProduto = async (e) => {
@@ -31,11 +36,23 @@ function AddProduto() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      }
+    );
     } catch (error) {
       console.log("Erro: ", error);
+      setMessage({message:"Não foi possivel enviar o produto", type:"error"});
+      return;
     }
-    window.location.reload();
+    setNome("");
+    setPreco(null);
+    setDescricao("");
+    setTags("");
+
+    setImagem(null);
+    setImagemPreview(null);
+    fileInputRef.current.value = null;
+
+    setMessage({message:"Produto enviado com sucesso", type:"sucess"});
   };
 
   //visualizar imagem
@@ -44,12 +61,11 @@ function AddProduto() {
     if(file){
       const reader = new FileReader();
       reader.onloadend = () => {
-        const base64Data = reader.result;
-        localStorage.setItem("imagemProduto", base64Data)
+        setImagemPreview(reader.result);
+        setImagem(event.target.files[0]);
       };
       reader.readAsDataURL(file);
     }
-    window.location.reload();
   };
 
   return (
@@ -61,6 +77,7 @@ function AddProduto() {
         alignItems: "center",
       }}
     >
+      <MySnackBar message={message.message} type={message.type} onClose={() => setMessage({ message: "", type: "" })}></MySnackBar>
       <form onSubmit={handleAddProduto} className="containerAddProdutos">
         <h2>Adicionar produto</h2>
         <p>Nome</p>
@@ -68,6 +85,7 @@ function AddProduto() {
           className="input-gerenciar"
           type="text"
           placeholder="Insira o nome do produto"
+          value={nome}
           onChange={(e) => setNome(e.target.value)}
         />
         <p>Preço</p>
@@ -75,24 +93,28 @@ function AddProduto() {
           className="input-gerenciar"
           type="text"
           placeholder="Insira o preço do produto"
+          value={preco}
           onChange={(e) => setPreco(e.target.value)}
         />
         <p>Descrição</p>
         <textarea
           type="text"
           placeholder="Descrição do produto"
+          value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
         />
         <p>Tags</p>
         <textarea
           type="text"
           placeholder="Ex: (FPS, Mundo aberto, RPG, etc...)"
+          value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
           <input
+          ref={fileInputRef}
             type="file"
             id="fileInput"
             accept="image/*"
