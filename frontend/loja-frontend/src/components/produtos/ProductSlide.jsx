@@ -1,14 +1,13 @@
-function ProductSlide({imagemPreview}) {
+function ProductSlide({nomePreview, precoPreview, imagemPreview}) {
   return (
     <div className="produto">
       <img src={imagemPreview} alt="Preview"/>
       <br />
-      <p>nome</p>
+      <p>{nomePreview}</p>
       <div>
         <button className="buttonComprar"
         >
-          botas
-          {/* R$ {produto.preco.toFixed(2)} */}
+          R$ {precoPreview.toFixed(2)}
         </button>
       </div>
     </div>
