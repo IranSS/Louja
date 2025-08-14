@@ -9,7 +9,6 @@ function SearchComponent(){
     const [produtos, setProdutos] = useState([]);
     const [produtosFiltrados, setProdutosFiltrados] = useState([]);
     const {addToCart, cartItems} = useCart();
-
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -77,8 +76,11 @@ function SearchComponent(){
                         <div className="campoAcoesItens">
                             <p>{produto.nome}</p>
                             <button className="buttonComprar"
-                                onClick={() => cartItems.some(item => item.id === produto.id)
-                                ? alert("Produto já está no carrinho") : addToCart(produto)}>R$ 
+                                onClick={() => 
+                                    localStorage.getItem("token") !== null ? 
+                                        (cartItems.some(item => item.id === produto.id)
+                                        ? alert("Produto já está no carrinho") : addToCart(produto))
+                                    : (alert("primeiro você precisa entrar na sua conta!"))}>R$ 
                                 {produto.preco.toFixed(2)}
                             </button>
                         </div>

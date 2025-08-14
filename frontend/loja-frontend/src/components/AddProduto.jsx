@@ -12,6 +12,7 @@ function AddProduto() {
   const [tags, setTags] = useState("");
   const [imagem, setImagem] = useState(null);
 
+
   const handleAddProduto = async (e) => {
     e.preventDefault();
     const tagsArray = tags.split(",").map((tag) => tag.trim());
@@ -33,6 +34,20 @@ function AddProduto() {
       });
     } catch (error) {
       console.log("Erro: ", error);
+    }
+    window.location.reload();
+  };
+
+  //visualizar imagem
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Data = reader.result;
+        localStorage.setItem("imagemProduto", base64Data)
+      };
+      reader.readAsDataURL(file);
     }
     window.location.reload();
   };
@@ -80,8 +95,9 @@ function AddProduto() {
           <input
             type="file"
             id="fileInput"
+            accept="image/*"
             className="file-input"
-            onChange={(e) => setImagem(e.target.files[0])}
+            onChange={handleFileChange}
           />
           <label htmlFor="fileInput" className="custom-file-button">
             Escolher imagem de capa

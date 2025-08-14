@@ -1,13 +1,20 @@
 import { useCart } from "./CarrinhoContext";
 
-function CarrinhoProcessarPedido() {
+function CarrinhoProcessarPedido({ valorDoPai }) {
   const { cartItems } = useCart();
   const total = cartItems.reduce((sum, item) => sum + item.preco, 0);
+
+  const handleClick = () => {
+    valorDoPai(true);
+  };
+
   return (
     <div className="Container-processar">
       <div className="campo-processar-predido">
         <h3>Total: R$ {total.toFixed(2).replace(".", ",")}</h3>
-        <button className="button-processar-pedido">Fechar Pedido</button>
+        <button className="button-processar-pedido" onClick={handleClick}>
+          Fechar Pedido
+        </button>
       </div>
     </div>
   );

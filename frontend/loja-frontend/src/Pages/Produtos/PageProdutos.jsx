@@ -1,6 +1,6 @@
 import Home from "../Principal/Home";
+import MyFooter from "../../components/interface/MyFooter";
 import Painel from "../../components/Painel";
-
 import SearchComponent from "../../components/search/SearchComponent";
 
 import "../../Styles/HomeStyle.css";
@@ -21,6 +21,7 @@ function PageProdutos() {
         <Painel categoria="Jogos de RPG" tag={"RPG"}></Painel>
         <Painel categoria="Destaques" tag={"+"}></Painel>
       </main>
+      <MyFooter></MyFooter>
     </div>
   );
 }

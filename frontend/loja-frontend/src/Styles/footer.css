@@ -1,0 +1,60 @@
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding:1rem 0rem 1rem 0rem;
+    font-family: "Radio Canada", sans-serif;
+    font-size: larger;
+    background-color: #12283c;
+    box-shadow: 0px 0px 0px 1px black;
+    overflow-x: hidden;
+    width: 100%;
+}
+.container-footer{
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+}
+.redirecionar{
+    display: flex;
+    color: white;
+    margin: 0;
+    margin-top: 0.5rem;
+    font-family: "Radio Canada", sans-serif;
+    font-size: 15px;
+    text-decoration-line: underline;
+    width: 100%;
+}
+.icon-footer{
+    position: relative;
+    top: 0.2rem;
+    width: 20px;
+    transform: translateZ(-1);
+    right: 2rem;
+}
+.redes-sociais{
+    display: flex; 
+    flex-direction: row;
+    gap: 0.3rem;
+}
+.divisor-vertical{
+    width: 1px;
+    height: 8rem;
+    background-color: #09131d;
+}
+.campo{
+    width: 15rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.titulos-campo{
+    padding: 0;
+    font-weight: bold;
+}

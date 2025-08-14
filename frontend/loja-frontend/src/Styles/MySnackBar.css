@@ -1,0 +1,28 @@
+.snackbar{
+    font-family: "Radio Canada", sans-serif;
+    position: fixed;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    z-index: 999;
+    opacity: 0;
+    animation: fadeInOut 0.6s ease forwards;
+}
+.snackbar.sucess{
+    background-color: #4caf50;
+}
+.snackbar.error{
+    background-color: #f44336;
+}
+
+@keyframes fadeInOut{
+    0% {opacity: 0; top: 20px;}
+    10% {opacity: 1; top: 40px;}
+    90% {opacity: 1; top: 40px;}
+    100% {opacity: 0; top: 20px;}
+}
