@@ -94,12 +94,15 @@ function Painel({ categoria, tag, nome }) {
   //adicionar produto no carrinho
   const handleAdicionarProduto = (produto) => {
     if (localStorage.getItem("token") === null) {
-      alert("primeiro você precisa entrar na sua conta!");
+      setSnackBar({
+        message: "primeiro você precisa entrar na sua conta!",
+        type: "error",
+      });
     } else if (cartItems.some((item) => item.id === produto.id)) {
-      setSnackBar({message:"", type:""});
+      setSnackBar({ message: "", type: "" });
       setSnackBar({ message: "produto já está no carrinho", type: "error" });
     } else {
-      setSnackBar({message:"", type:""});
+      setSnackBar({ message: "", type: "" });
       addToCart(produto);
       setSnackBar({
         message: "produto adicionado no carrinho",

@@ -5,7 +5,7 @@ import MySnackBar from "./interface/MySnackBar.jsx"
 
 import "./../Styles/GerenciarProdutoStyle.css";
 
-function AddProduto({setImagemPreview}) {
+function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
   const { token } = useAuth();
   
   const [nome, setNome] = useState("");
@@ -31,6 +31,7 @@ function AddProduto({setImagemPreview}) {
     tagsArray.forEach((tag) => formData.append("tags", tag));
     formData.append("imagem", imagem);
 
+    //enviar para backend
     try {
       await axios.post("http://localhost:8080/produto/publicar", formData, {
         headers: {
@@ -44,7 +45,11 @@ function AddProduto({setImagemPreview}) {
       return;
     }
     setNome("");
+    setNomePreview("");
+
     setPreco(null);
+    setPrecoPreview(0);
+
     setDescricao("");
     setTags("");
 
@@ -55,6 +60,19 @@ function AddProduto({setImagemPreview}) {
     setMessage({message:"Produto enviado com sucesso", type:"sucess"});
   };
 
+  //visualizar nome no preview
+  const handleNome = (event) => {
+    setNome(event.target.value);
+    setNomePreview(event.target.value);
+  }
+  //visualizar preço no preview
+  const handlePreco = (event) => {
+    const valorDigitado = event.target.value;
+    setPreco(event.target.value);
+
+    const precoFloat = parseFloat(valorDigitado.replace(",", "."));;
+    setPrecoPreview(precoFloat || 0);
+  }
   //visualizar imagem
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -86,7 +104,7 @@ function AddProduto({setImagemPreview}) {
           type="text"
           placeholder="Insira o nome do produto"
           value={nome}
-          onChange={(e) => setNome(e.target.value)}
+          onChange={handleNome}
         />
         <p>Preço</p>
         <input
@@ -94,7 +112,7 @@ function AddProduto({setImagemPreview}) {
           type="text"
           placeholder="Insira o preço do produto"
           value={preco}
-          onChange={(e) => setPreco(e.target.value)}
+          onChange={handlePreco}
         />
         <p>Descrição</p>
         <textarea

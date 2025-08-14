@@ -4,7 +4,9 @@ import ProductSlide from "../../components/produtos/ProductSlide";
 import { useState } from "react";
 
 function GerenciarProdutos() {
-  const [imagemPreview, setImagemPreview] = useState(null);
+  const [imagem, setImagem] = useState(null);
+  const [nomeProduto, setNomeProduto] = useState("Nome");
+  const [preco, setPreco] = useState(0);
 
   return (
     <div>
@@ -19,7 +21,7 @@ function GerenciarProdutos() {
         }}
       >
         <div style={{ width: "50%", justifyItems: "center" }}>
-          <AddProduto setImagemPreview={setImagemPreview}></AddProduto>
+          <AddProduto setNomePreview={setNomeProduto} setPrecoPreview={setPreco} setImagemPreview={setImagem}></AddProduto>
         </div>
         <div
           style={{
@@ -31,7 +33,7 @@ function GerenciarProdutos() {
           }}
         >
           <p>Preview</p>
-          <ProductSlide imagemPreview={imagemPreview}></ProductSlide>
+          <ProductSlide nomePreview={nomeProduto} precoPreview={preco} imagemPreview={imagem}></ProductSlide>
         </div>
       </div>
     </div>
