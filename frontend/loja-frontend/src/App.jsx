@@ -9,6 +9,8 @@ import GerenciarProdutos from "./Pages/Produtos/GerenciarProdutos";
 import Search from "./Pages/Principal/Search";
 import CarrinhoPage from "./Pages/Principal/CarrinhoPage";
 import PerfilPage from "./Pages/Auth/PerfilPage";
+import FinalizacaoPage from "./Pages/Principal/FinalizacaoPage";
+import GerenciarLayout from "./Pages/Produtos/GerenciarLayout";
 
 import "./App.css";
 import "swiper/css";
@@ -37,10 +39,14 @@ function RoutesWrapper(){
       <Route path="/login" element={<LoginAndAuth />}></Route>
       <Route path="/registrar" element={<RegisterPage />} />
         {role?.role === "ADMIN" && (
-          <Route path="/produto/publicar" element={<GerenciarProdutos />} />
+          <>
+            <Route path="/produto/publicar" element={<GerenciarProdutos />} />
+            <Route path="/produto/gerenciar-layout" element={<GerenciarLayout />} />  
+          </>
         )}
       <Route path="/pesquisar" element={<Search />} />
       <Route path="/carrinho" element={<CarrinhoPage />} />
+      <Route path="/encerramento-de-pedido" element={<FinalizacaoPage/>}></Route>
       <Route path="/perfil" element={<PerfilPage></PerfilPage>}></Route>
     </Routes>
   )

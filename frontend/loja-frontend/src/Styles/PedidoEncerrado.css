@@ -1,0 +1,42 @@
+.principal-encerramento{
+    min-height: calc(100vh - 906,99px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-mensagem{
+    height: 100%vh;
+    padding: 1rem;
+    border-radius: 8px;;
+    background-color: #042F58;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 0 1px black;
+}
+.mensagem{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.final-message{
+    align-items: center;
+    padding: 0;
+}
+.final-agrad{
+    padding: 0;
+    padding-bottom: 2px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.icon-check{
+    align-self: center;    
+    color: #00B421;
+}
+.para{
+    padding: 0;
+    align-self: center;
+}

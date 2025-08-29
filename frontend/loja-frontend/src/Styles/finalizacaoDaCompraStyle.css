@@ -1,0 +1,65 @@
+legend{
+    font-family: "Radio Canada", sans-serif;
+}
+fieldset{
+    border: none;
+}
+.radio{
+    margin: 0.2rem 0.2rem 0.3rem 0.2rem;
+}
+.FecharPedido{
+    background-color: #042F58;
+    padding: 4rem 2rem 2rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 0px 0px 1px black;
+
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+.voltar{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+}
+.enunciado-de-escolha{
+    padding: 0;
+    margin-bottom: 0.3rem;
+}
+.texto{
+    width: 100%;
+}
+.titulo-pagamento{
+    align-self: center;
+    margin-bottom: 1rem;
+}
+.infos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-bottom: 0.2rem;
+}
+.infos > img{
+    margin: 0.2rem 0.2rem 0.5rem 0.2rem;
+    display: flex;
+}
+.cartao_logo{
+    width: 30px;
+    height: 20px;
+}
+.pix_logo{
+    width: 20px;
+    height: 20px;
+}
+.barra_horizontal{
+    background-color: black;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

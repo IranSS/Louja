@@ -1,5 +1,5 @@
 import "./../Styles/SideBarStyle.css";
-import { X, User, Settings, LogOut } from "lucide-react";
+import { X, User, Plus, LogOut, LayoutGrid, PanelsTopLeft } from "lucide-react";
 import { useAuth } from "../Configs/Auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -46,8 +46,17 @@ function SideBar({ isOpen, toggleSlideBar }) {
             role?.role === "ADMIN" ? (
             <li onClick={() => navigate("/produto/publicar")}>
               <div className="menu-item">
-                <Settings className="icon"></Settings>
-                <p>Gerenciar</p>
+                <Plus className="icon"></Plus>
+                <p>Adicionar Produto</p>
+              </div>
+            </li>) : (null)
+          }
+          {
+            role?.role === "ADMIN" ? (
+            <li onClick={() => navigate("/produto/gerenciar-layout")}>
+              <div className="menu-item">
+                <PanelsTopLeft className="icon"></PanelsTopLeft>
+                <p>Personalizar</p>
               </div>
             </li>) : (null)
           }

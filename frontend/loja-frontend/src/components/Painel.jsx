@@ -6,25 +6,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useCart } from "./CarrinhoContext";
 
+import MySnackBar from "./interface/MySnackBar";
+
 function Painel({ categoria, tag, nome }) {
   const { addToCart, cartItems } = useCart();
   const [productPerView, setProductPerView] = useState(4);
   const [spaceBetweenProdutos, setSpaceBetweenProdutos] = useState(0);
   const [centerSlideProduto, setCenterSlideProduto] = useState(false);
   const [produtos, setProdutos] = useState([]);
+  const [snackbar, setSnackBar] = useState({ message: "", type: "" });
   const navigate = useNavigate();
 
   //filtro, se não tiver tag vai buscar pelo nome
   const produtosFiltrados = produtos.filter((produto) => {
     if (tag !== "") {
-      return Array.isArray(produto.tags) && produto.tags.includes(tag);
+       return Array.isArray(produto.tags) && produto.tags.includes(tag);
     } else {
       return (
         typeof produto.nome === "string" &&
         produto.nome.toLowerCase().startsWith(nome.toLowerCase())
       );
     }
-  });
+  }, [produtos]);
 
   //organiza o tamanho das janelas reajustando os slides
   useEffect(() => {
@@ -82,16 +85,47 @@ function Painel({ categoria, tag, nome }) {
       });
   }, []);
 
-    useEffect(() => {
-      console.log("painel carrinho: ", cartItems);
-      const teste = () => {
-        
-      }
-      teste();
+  useEffect(() => {
+    console.log("painel carrinho: ", cartItems, " produtos: ", produtos);
+    const teste = () => { };
+    teste();
   }, [cartItems]);
+
+  //adicionar produto no carrinho
+  const handleAdicionarProduto = (produto) => {
+    if (localStorage.getItem("token") === null) {
+      setSnackBar({
+        message: "primeiro você precisa entrar na sua conta!",
+        type: "error",
+      });
+    } else if (cartItems.some((item) => item.id === produto.id)) {
+      setSnackBar({ message: "", type: "" });
+      setSnackBar({ message: "produto já está no carrinho", type: "error" });
+    } else {
+      setSnackBar({ message: "", type: "" });
+      addToCart(produto);
+      setSnackBar({
+        message: "produto adicionado no carrinho",
+        type: "success",
+      });
+    }
+  };
+
+  //atualiza estado de produtos
+  useEffect(() => {
+    if (produtos.length > 0) {
+      console.log("produtos atualizados (useEffect): ", produtos);
+      console.log("produtos filtrados ", produtosFiltrados);
+    }
+  }, [produtos], [produtosFiltrados]);
 
   return (
     <div>
+      <MySnackBar
+        message={snackbar.message}
+        type={snackbar.type}
+        onClose={() => setSnackBar({ message: "", type: "" })}
+      ></MySnackBar>
       <h2 className="h2Categorias">{categoria}</h2>
       {produtosFiltrados.length !== 0 ? (
         <div className="containerListaProdutos">
@@ -110,20 +144,12 @@ function Painel({ categoria, tag, nome }) {
                   <br />
                   <p>{produto.nome}</p>
                   <div>
-                    {
-                      <button
-                        className="buttonComprar"
-                        onClick={() =>
-                          localStorage.getItem("token") === null ? (
-                            (alert("você tem que logar na sua conta"))
-                          ) : (cartItems.some(item => item.id === produto.id)
-                            ? alert("Produto já está no carrinho")
-                            : addToCart(produto))
-                        }
-                      >
-                        R$ {produto.preco.toFixed(2)}
-                      </button>
-                    }
+                    <button
+                      className="buttonComprar"
+                      onClick={() => handleAdicionarProduto(produto)}
+                    >
+                      R$ {produto.preco.toFixed(2)}
+                    </button>
                   </div>
                 </div>
               </SwiperSlide>
