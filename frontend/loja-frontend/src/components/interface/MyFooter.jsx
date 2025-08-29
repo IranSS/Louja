@@ -18,7 +18,7 @@ function MyFooter() {
           >
             Repositório
           </a>
-          <a className="redirecionar" href="">qualquer coisa</a>
+          <a className="redirecionar" href="">Tecnologias usadas</a>
         </div>
         <div className="divisor-vertical"></div>
         <div className="campo">

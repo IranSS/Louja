@@ -1,26 +1,27 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useAuth } from "../Configs/Auth/AuthProvider";
+
 import axios from "axios";
 import MySnackBar from "./interface/MySnackBar.jsx"
+import FiltroTags from "./produtos/FiltroTags.jsx";
 
 import "./../Styles/GerenciarProdutoStyle.css";
 
-function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
+function AddProduto({ setNomePreview, setPrecoPreview, setImagemPreview }) {
   const { token } = useAuth();
-  
+
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState(0);
-  const [tags, setTags] = useState("");
+  const [listaDeTags, setListaDeTags] = useState([]);
 
   const [imagem, setImagem] = useState(null);
-  const [message, setMessage] = useState({message: "", type: ""});
+  const [message, setMessage] = useState({ message: "", type: "" });
   const fileInputRef = useRef(null);
 
 
   const handleAddProduto = async (e) => {
     e.preventDefault();
-    const tagsArray = tags.split(",").map((tag) => tag.trim());
     const precoFormatado = preco.replace(",", ".");
     const precoFloat = parseFloat(precoFormatado);
 
@@ -28,7 +29,7 @@ function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
     formData.append("nome", nome);
     formData.append("descricao", descricao);
     formData.append("preco", precoFloat);
-    tagsArray.forEach((tag) => formData.append("tags", tag));
+    listaDeTags.forEach((tag) => formData.append("tags", tag));
     formData.append("imagem", imagem);
 
     //enviar para backend
@@ -38,26 +39,30 @@ function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
           Authorization: `Bearer ${token}`,
         },
       }
-    );
+      );
     } catch (error) {
       console.log("Erro: ", error);
-      setMessage({message:"Não foi possivel enviar o produto", type:"error"});
+      setMessage({ message: "Não foi possivel enviar o produto", type: "error" });
       return;
     }
+
+    setMessage({ message: "Produto enviado com sucesso", type: "success" });
+    resetForm();
+  };
+
+  //resetar formulario
+  const resetForm = () => {
+    setListaDeTags([]);
     setNome("");
     setNomePreview("");
-
-    setPreco(null);
+    setPreco(0);
     setPrecoPreview(0);
-
     setDescricao("");
-    setTags("");
-
     setImagem(null);
     setImagemPreview(null);
     fileInputRef.current.value = null;
 
-    setMessage({message:"Produto enviado com sucesso", type:"sucess"});
+    console.log("form resetado lista: ", listaDeTags);
   };
 
   //visualizar nome no preview
@@ -76,7 +81,7 @@ function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
   //visualizar imagem
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if(file){
+    if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagemPreview(reader.result);
@@ -121,18 +126,23 @@ function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
         />
-        <p>Tags</p>
-        <textarea
-          type="text"
-          placeholder="Ex: (FPS, Mundo aberto, RPG, etc...)"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
+        <FiltroTags
+          classNameController={"filtro-tags-addProduto"}
+          quantidadeDeTags={0}
+          showSelects={true}
+          checkBox={null}
+          message={"Escolha as tags do produto"}
+          placeholderMessage={"Ex: (FPS, Mundo aberto, RPG, etc...)"}
+          value={listaDeTags}
+          onChange={(tags) => {
+            setListaDeTags(tags)
+          }}
         />
         <div
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
           <input
-          ref={fileInputRef}
+            ref={fileInputRef}
             type="file"
             id="fileInput"
             accept="image/*"
@@ -143,7 +153,6 @@ function AddProduto({setNomePreview, setPrecoPreview, setImagemPreview}) {
             Escolher imagem de capa
           </label>
         </div>
-
         <button type="submit" className="enviar-dados">
           Enviar
         </button>

@@ -20,14 +20,14 @@ function Painel({ categoria, tag, nome }) {
   //filtro, se não tiver tag vai buscar pelo nome
   const produtosFiltrados = produtos.filter((produto) => {
     if (tag !== "") {
-      return Array.isArray(produto.tags) && produto.tags.includes(tag);
+       return Array.isArray(produto.tags) && produto.tags.includes(tag);
     } else {
       return (
         typeof produto.nome === "string" &&
         produto.nome.toLowerCase().startsWith(nome.toLowerCase())
       );
     }
-  });
+  }, [produtos]);
 
   //organiza o tamanho das janelas reajustando os slides
   useEffect(() => {
@@ -86,8 +86,8 @@ function Painel({ categoria, tag, nome }) {
   }, []);
 
   useEffect(() => {
-    console.log("painel carrinho: ", cartItems);
-    const teste = () => {};
+    console.log("painel carrinho: ", cartItems, " produtos: ", produtos);
+    const teste = () => { };
     teste();
   }, [cartItems]);
 
@@ -106,10 +106,18 @@ function Painel({ categoria, tag, nome }) {
       addToCart(produto);
       setSnackBar({
         message: "produto adicionado no carrinho",
-        type: "sucess",
+        type: "success",
       });
     }
   };
+
+  //atualiza estado de produtos
+  useEffect(() => {
+    if (produtos.length > 0) {
+      console.log("produtos atualizados (useEffect): ", produtos);
+      console.log("produtos filtrados ", produtosFiltrados);
+    }
+  }, [produtos], [produtosFiltrados]);
 
   return (
     <div>
