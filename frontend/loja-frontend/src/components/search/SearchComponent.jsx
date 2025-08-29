@@ -73,7 +73,7 @@ function SearchComponent() {
         addToCart(produto);
         setMessage({
           message: "produto adicionado no carrinho",
-          type: "sucess",
+          type: "success",
         });
       }
     } else {

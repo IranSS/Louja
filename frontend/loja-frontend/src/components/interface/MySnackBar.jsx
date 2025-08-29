@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./../../Styles/MySnackBar.css"
 
-export default function MySnackBar({ message, type = "sucess", onClose }) {
+export default function MySnackBar({ message, type = "success", onClose }) {
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {

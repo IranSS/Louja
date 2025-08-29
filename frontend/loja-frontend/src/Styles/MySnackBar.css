@@ -13,7 +13,7 @@
     opacity: 0;
     animation: fadeInOut 0.6s ease forwards;
 }
-.snackbar.sucess{
+.snackbar.success{
     background-color: #4caf50;
 }
 .snackbar.error{
